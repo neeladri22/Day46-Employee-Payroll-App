@@ -52,3 +52,33 @@ class EmployeePayrollData {
     }
 }
 
+//UC2 - Ability to set Event Listeners when Document is loaded so as to
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    const name = document.querySelector('#name');
+    const textError = document.querySelector('.text-error');
+    name.addEventListener('input', function () {
+        if (name.value.length == 0) {
+            //setTextValue('.text-error', "");
+            textError.textContent = "";
+            return;
+        }
+        try {
+            (new EmployeePayrollData()).name = name.value;
+            //setTextValue('.text-error', "");
+            textError.textContent = "";
+        }
+        catch (e) {
+            //setTextValue('.text-error', e);
+            textError.textContent = e;
+        }
+    });
+
+
+    const salary = document.querySelector("#salary");
+    const output = document.querySelector(".salary—output");
+    output.textContent = salary.value;
+    salary.addEventListener('input', function () {
+        output.textContent = salary.value;
+    });
+});
